@@ -1,3 +1,14 @@
+# CPSC 485
+# Programming Assignment
+# Kshitij Pingle
+# November 20, 2025
+
+# edit_distance.py : software to run edit distance algorithm on 2 words
+
+# USEAGE:
+#   Provide words as command line arguments
+#   Ex.     python .\edit_distance.py evaluation elution
+
 import sys
 
 from helper_functions import *
@@ -14,14 +25,18 @@ except IndexError:
     print("python ./edit_distance.py word1 word2")
     raise Exception("Not enough command line arguments")
 
-# Check if words are good
+# Input Checking
 for letter in word1:
     if (letter.isdigit()):
-        raise Exception("Unexpected numbers in words")
+        raise Exception("Unexpected numbers in first word")
+    elif (not letter.isalpha()):
+        raise Exception("Unexpected input. Please only provide words with alphabets and no special characters")
     
 for letter in word2:
     if (letter.isdigit()):
-        raise Exception("Unexpected numbers in words")
+        raise Exception("Unexpected numbers in second word")
+    elif (not letter.isalpha()):
+        raise Exception("Unexpected input. Please only provide words with alphabets and no special characters")
     
 word1 = word1.lower()
 word2 = word2.lower()
@@ -77,6 +92,6 @@ print(f"The edit distance is: {edit_distance}")
 word1_align, word2_align = find_alignment(dist_matrix, word1, word2, matches)
 
 print()
-print("Alignment is")
+print("Alignment is:")
 print(word1_align)
 print(word2_align)

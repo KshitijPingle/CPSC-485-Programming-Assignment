@@ -15,18 +15,25 @@ def print_matrix(dist_matrix, word1, word2):
     """Print a list representing a distance matrix in easy to read matrix format"""\
     
     # Print the first word
-    first_line = '      '
+    first_line = '         '
     for letter in word1:
         first_line += letter + '  '
     print(first_line)
 
+    print('-' * len(first_line))
+
     for i, row in enumerate(dist_matrix):
-        line = ''
+        line = ' '
         if (i == 0):
             line += ' '
         else:
             line += word2[i-1]
-        line += ' ' + str(row)
+        line += ' '
+        # Iterate through row and add them to line
+        for j, item in enumerate(row):
+            if (j == 0):
+                line += '|  '
+            line += str(item) + '  '
         print(line)
 
 
@@ -118,7 +125,7 @@ def find_alignment(dist_matrix, word1, word2, matches):
             continue
     
     print()
-    print("The following is the path taken in the distance matrix")
+    print("The following is the path taken in the distance matrix starting from the edit distance value")
     print(dist_along_path)
 
     # Reverse both word align strings
